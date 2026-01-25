@@ -1,0 +1,5 @@
+{
+  "name": "Nexus AI Scheduler",
+  "description": "A cognitive-aware daily task scheduler powered by Gemini 3. Features sematic task understanding, adaptive scheduling, and a fully AI-controlled glassmorphism UI engine.",
+  "requestFramePermissions": []
+}

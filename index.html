@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <title>Nexus AI Scheduler</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            fontFamily: {
+              sans: ['Inter', 'sans-serif'],
+              mono: ['JetBrains Mono', 'monospace'],
+            },
+            colors: {
+              accent: {
+                DEFAULT: 'rgb(var(--accent-rgb) / <alpha-value>)',
+                500: 'rgb(var(--accent-rgb) / <alpha-value>)',
+                400: 'rgb(var(--accent-rgb) / 0.8)',
+                600: 'rgb(var(--accent-rgb) / 1.0)',
+              },
+              glass: {
+                100: 'rgba(255, 255, 255, 0.05)',
+                200: 'rgba(255, 255, 255, 0.1)',
+                300: 'rgba(255, 255, 255, 0.2)',
+                border: 'var(--glass-border)',
+              },
+              foreground: {
+                DEFAULT: 'var(--text-primary)',
+                muted: 'var(--text-secondary)',
+                dim: 'var(--text-dim)',
+              }
+            },
+            animation: {
+              'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+              'float': 'float 6s ease-in-out infinite',
+            },
+            keyframes: {
+              float: {
+                '0%, 100%': { transform: 'translateY(0)' },
+                '50%': { transform: 'translateY(-10px)' },
+              }
+            }
+          }
+        }
+      }
+    </script>
+    <style>
+      :root {
+        --bg-image: url('https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=2072&auto=format&fit=crop');
+        --glass-blur: 16px;
+        --glass-opacity: 0.15;
+        --glass-border: 1px solid rgba(255, 255, 255, 0.1);
+        
+        --text-primary: #ffffff;
+        --text-secondary: rgba(255, 255, 255, 0.7);
+        --text-dim: rgba(255, 255, 255, 0.4);
+        
+        --accent-color: #6366f1;
+        --accent-rgb: 99 102 241;
+        --animation-speed: 0.4s;
+        
+        --glass-input-bg: rgba(0, 0, 0, 0.3);
+        --glass-input-border: rgba(255, 255, 255, 0.1);
+      }
+
+      body {
+        margin: 0;
+        padding: 0;
+        background-color: #000;
+        overflow: hidden;
+        color: var(--text-primary);
+        font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+        touch-action: manipulation;
+      }
+
+      .glass-panel {
+        background: rgba(255, 255, 255, var(--glass-opacity));
+        backdrop-filter: blur(var(--glass-blur));
+        -webkit-backdrop-filter: blur(var(--glass-blur));
+        border: var(--glass-border);
+        box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+        transition: all var(--animation-speed) cubic-bezier(0.4, 0, 0.2, 1);
+      }
+
+      .glass-input {
+        background: var(--glass-input-bg);
+        border: 1px solid var(--glass-input-border);
+        color: var(--text-primary);
+        transition: all 0.2s ease;
+      }
+      
+      .glass-input:focus {
+        background: rgba(var(--accent-rgb), 0.15);
+        border-color: rgba(var(--accent-rgb), 0.5);
+        box-shadow: 0 0 0 2px rgba(var(--accent-rgb), 0.1);
+        outline: none;
+      }
+
+      .custom-scrollbar::-webkit-scrollbar {
+        width: 6px;
+      }
+      .custom-scrollbar::-webkit-scrollbar-track {
+        background: transparent;
+      }
+      .custom-scrollbar::-webkit-scrollbar-thumb {
+        background: rgba(255, 255, 255, 0.1);
+        border-radius: 10px;
+      }
+      .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+        background: rgba(255, 255, 255, 0.2);
+      }
+
+      /* Native scroll behavior for mobile */
+      @media (max-width: 768px) {
+        .custom-scrollbar {
+          scrollbar-width: none;
+          -ms-overflow-style: none;
+        }
+        .custom-scrollbar::-webkit-scrollbar {
+          display: none;
+        }
+      }
+
+      input[type=range] {
+        -webkit-appearance: none;
+        background: transparent;
+      }
+      input[type=range]::-webkit-slider-runnable-track {
+        width: 100%;
+        height: 4px;
+        background: rgba(255, 255, 255, 0.1);
+        border-radius: 2px;
+      }
+      input[type=range]::-webkit-slider-thumb {
+        -webkit-appearance: none;
+        height: 16px;
+        width: 16px;
+        border-radius: 50%;
+        background: var(--accent-color);
+        cursor: pointer;
+        margin-top: -6px;
+        box-shadow: 0 0 10px rgba(var(--accent-rgb), 0.5);
+      }
+    </style>
+    <script type="importmap">
+    {
+      "imports": {
+        "react/": "https://esm.sh/react@^19.2.3/",
+        "react": "https://esm.sh/react@^19.2.3",
+        "lucide-react": "https://esm.sh/lucide-react@^0.562.0",
+        "react-dom/": "https://esm.sh/react-dom@^19.2.3/",
+        "@google/genai": "https://esm.sh/@google/genai@^1.35.0",
+        "@supabase/supabase-js": "https://esm.sh/@supabase/supabase-js@2"
+      }
+    }
+    </script>
+  <link rel="stylesheet" href="/index.css">
+</head>
+  <body>
+    <div id="root"></div>
+  <script type="module" src="/index.tsx"></script>
+</body>
+</html>
