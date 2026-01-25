@@ -116,24 +116,47 @@ Predictable relational behavior and clearer timeline control were required. Supa
 | AI         | Gemini                  | Natural language task parsing           |
 | Hosting    | Vercel                  | Fast deployments and preview workflows |
 
----
-
 ## 📂 Project Structure
 
-nexus-ai-scheduler/
+```
+fainally-didi-it/
 ├── components/
-│ ├── TaskList.tsx
-│ ├── EditTaskModal.tsx
-│ ├── AnalyticsView.tsx
-│ ├── HistoryView.tsx
-│ ├── JournalView.tsx
-│ └── BackgroundEffects.tsx
-├── App.tsx
-├── metadata.json
-├── models_full_dump.json
+│   ├── AnalyticsView.tsx        # Productivity analytics & insights UI
+│   ├── Auth.tsx                 # Authentication UI & session handling
+│   ├── BackgroundEffects.tsx    # Glassmorphism & background animations
+│   ├── EditTaskModal.tsx        # Safe task editing modal
+│   ├── GlassCard.tsx            # Reusable glassmorphism UI card
+│   ├── HistoryView.tsx          # Completed tasks archive
+│   ├── JournalView.tsx          # Daily journal & reflections
+│   ├── SettingsModal.tsx        # App & user settings modal
+│   └── TaskList.tsx             # Core task rendering & timeline logic
+│
+├── services/
+│   ├── geminiService.ts         # AI task generation (Gemini integration)
+│   └── supabaseClient.ts        # Supabase client (DB + Auth)
+│
+├── .env.local                   # Environment variables (not committed)
+├── .gitattributes               # Git attributes configuration
+├── .gitignore                   # Ignored files & folders
+│
+├── App.tsx                      # Global state orchestration
+├── README.md                    # Project documentation
+├── index.html                   # HTML entry point
+├── index.tsx                    # React application bootstrap
+│
+├── models.ts                    # TypeScript models & interfaces
+├── metadata.json                # App metadata & configuration
+├── models_full_dump.json        # AI schemas, prompts & parsing rules
+│
+├── package-lock.json             # Dependency lockfile
+├── package.json                 # Project dependencies & scripts
+├── test_models.ts               # Model-level test cases
+├── test_old_tasks.ts            # Legacy task behavior tests
+├── tsconfig.json                # TypeScript configuration
+├── types.ts                     # Global shared types
+└── vite.config.ts               # Vite build & dev configuration
 
-
----
+```
 
 ## ⚙️ Local Setup
 
