@@ -30,7 +30,7 @@ It is built as a real system, not a demo.
 ![Timeline & Planner](assets/planner.png)
 ![Journal](assets/Journal.png)
 ![Analytics & History](assets/analytics.png)
-![Mobile Responsive View](assets/mobile.png)
+![Mobile Responsive View](assets/mobile.jpg)
 ![Architecture](assets/InnerWorking.png)
 
 ---
